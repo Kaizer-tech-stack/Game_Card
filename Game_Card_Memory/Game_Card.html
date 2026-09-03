@@ -10,34 +10,38 @@
     <link rel="stylesheet" href="Game_Card.css " />
   </head>
   <body>
-    <div class="game-title">
-      <h1>MEMORY GACHA LIFE</h1>
-    </div>
-    <div class="container">
-      <div class="game-board"></div>
-      <div><span class="Moves">Moves: 0</span></div>
-      <div><span class="Time">Time: 00:00</span></div>
-      <div><span class="Score">Score: 1000</span></div>
-    </div>
-    <div class="Cards">
-      <div class="card banana"><span>?</span></div>
-      <div class="card apple"><span>?</span></div>
-      <div class="card orange"><span>?</span></div>
-      <div class="card mango"><span>?</span></div>
-      <div class="card grapes"><span>?</span></div>
-      <div class="card strawberry"><span>?</span></div>
-      <div class="card apple"><span>?</span></div>
-      <div class="card orange"><span>?</span></div>
-      <div class="card banana"><span>?</span></div>
-      <div class="card strawberry"><span>?</span></div>
-      <div class="card mango"><span>?</span></div>
-      <div class="card avocado"><span>?</span></div>
-      <div class="card watermelon"><span>?</span></div>
-      <div class="card grapes"><span>?</span></div>
-      <div class="card watermelon"><span>?</span></div>
-      <div class="card avocado"><span>?</span></div>
-    </div>
-    <button class="reset" onclick="resetGame()">Reset</button>
+    <main class="container">
+      <div class="game-title">
+        <h1>FRUITS GACHA LIFE</h1>
+      </div>
+
+      <div class="game-info">
+        <div><span class="Moves">Moves: 0</span></div>
+        <div><span class="Time">Time: 00:00</span></div>
+        <div><span class="Score">Score: 1000</span></div>
+      </div>
+
+      <div id="board-cards" class="board-cards">
+        <div class="card banana"><span>?</span></div>
+        <div class="card apple"><span>?</span></div>
+        <div class="card orange"><span>?</span></div>
+        <div class="card mango"><span>?</span></div>
+        <div class="card grapes"><span>?</span></div>
+        <div class="card strawberry"><span>?</span></div>
+        <div class="card apple"><span>?</span></div>
+        <div class="card orange"><span>?</span></div>
+        <div class="card banana"><span>?</span></div>
+        <div class="card strawberry"><span>?</span></div>
+        <div class="card mango"><span>?</span></div>
+        <div class="card avocado"><span>?</span></div>
+        <div class="card watermelon"><span>?</span></div>
+        <div class="card grapes"><span>?</span></div>
+        <div class="card watermelon"><span>?</span></div>
+        <div class="card avocado"><span>?</span></div>
+      </div>
+      <button class="reset-button" onclick="resetGame()">Reset</button>
+    </main>
+
     <script src="Game_Card.js"></script>
   </body>
 </html>
