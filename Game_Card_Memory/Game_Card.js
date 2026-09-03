@@ -8,5 +8,7 @@ console.log(card);
 card.forEach(function (card) {
   card.addEventListener("click", function () {
     card.style.backgroundColor = "red";
+    console.log(card.classList);
+    console.log(card.classList[1]);
   });
 });
