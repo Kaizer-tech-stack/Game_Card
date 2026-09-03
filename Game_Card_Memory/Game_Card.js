@@ -2,6 +2,11 @@ function resetGame() {
   document.getElementById("reset").innerHTML = "Wazzup mfvker!";
 }
 
-const Card = function () {
-  document.querySelectorAll("card").innerHTML = "hi";
-};
+const card = document.querySelectorAll(".card");
+console.log(card);
+
+card.forEach(function (card) {
+  card.addEventListener("click", function () {
+    card.style.backgroundColor = "red";
+  });
+});
