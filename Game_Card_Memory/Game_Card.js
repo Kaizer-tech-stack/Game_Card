@@ -17,6 +17,7 @@ const cardValues = [
   "banana",
   "banana",
   "apple",
+  "apple",
   "orange",
   "orange",
   "mango",
@@ -30,3 +31,8 @@ const cardValues = [
   "watermelon",
   "watermelon",
 ];
+card.forEach(function (card, index) {
+  card.addEventListener("click", function () {
+    card.innerHTML = cardValues[index];
+  });
+});
