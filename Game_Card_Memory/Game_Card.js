@@ -45,9 +45,9 @@ card.forEach(function (card) {
     flippedCards.push(card);
     if (flippedCards.length === 2) {
       if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
-        console.log("Match");
+        console.log("Match Found!");
       } else {
-        console.log("No Match");
+        console.log("No Match!");
       }
     }
   });
