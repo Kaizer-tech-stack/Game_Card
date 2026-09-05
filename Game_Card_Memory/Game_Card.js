@@ -12,3 +12,21 @@ card.forEach(function (card) {
     console.log(card.classList[1]);
   });
 });
+
+const cardValues = [
+  "banana",
+  "banana",
+  "apple",
+  "orange",
+  "orange",
+  "mango",
+  "mango",
+  "grape",
+  "grape",
+  "strawberry",
+  "strawberry",
+  "avocado",
+  "avocado",
+  "watermelon",
+  "watermelon",
+];
