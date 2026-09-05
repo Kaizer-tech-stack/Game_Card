@@ -52,7 +52,7 @@ card.forEach(function (card) {
       flippedCards = [];
     }
   });
-});*/
+});
 
 let flippedCards = [];
 card.forEach(function (card, index) {
@@ -73,6 +73,39 @@ card.forEach(function (card, index) {
               card.innerHTML = "";
               card.classList.remove("flipped");
             });
+          }, 1000);
+        }
+        flippedCards = [];
+      }
+    }
+  });
+});*/
+
+let matchedCards = [];
+let flippedCards = [];
+let locked = false;
+card.forEach(function (card, index) {
+  card.addEventListener("click", function () {
+    if (locked) return;
+    if (!matchedCards.includes(card)) {
+      card.innerHTML = cardValues[index];
+      card.classList.add("flipped");
+      flippedCards.push(card);
+      if (flippedCards.length === 2) {
+        if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
+          matchedCards.push(flippedCards[0], flippedCards[1]);
+          console.log("Match Found!");
+          flippedCards = [];
+        } else {
+          console.log("No Match!");
+          const cardToHide = flippedCards;
+          setTimeout(function () {
+            cardToHide.forEach(function (card) {
+              card.innerHTML = "";
+              card.classList.remove("flipped");
+            });
+            flippedCards = [];
+            locked = false;
           }, 1000);
         }
         flippedCards = [];
