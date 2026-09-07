@@ -96,6 +96,7 @@ let matchedCards = [];
 let flippedCards = [];
 let locked = false;
 let moves = 0;
+let score = 1000;
 card.forEach(function (card, index) {
   card.addEventListener("click", function () {
     if (locked) return;
@@ -119,6 +120,8 @@ card.forEach(function (card, index) {
               card.innerHTML = "";
               card.classList.remove("flipped");
             });
+            score -= 100;
+            document.getElementById("score").innerHTML = score;
             flippedCards = [];
             locked = false;
           }, 1000);
