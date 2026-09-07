@@ -84,6 +84,7 @@ card.forEach(function (card, index) {
 let matchedCards = [];
 let flippedCards = [];
 let locked = false;
+let moves = 0;
 card.forEach(function (card, index) {
   card.addEventListener("click", function () {
     if (locked) return;
@@ -93,7 +94,7 @@ card.forEach(function (card, index) {
       flippedCards.push(card);
       if (flippedCards.length === 2) {
         moves++;
-        console.log("Moves", moves);
+        document.getElementById("moves").innerHTML = moves;
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
