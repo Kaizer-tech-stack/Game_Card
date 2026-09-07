@@ -5,11 +5,21 @@ function resetGame() {
 const card = document.querySelectorAll(".card");
 console.log(card);
 
+let seconds = 0;
+let timerStarted = false;
 card.forEach(function (card) {
   card.addEventListener("click", function () {
     //card.style.backgroundColor = "red";
     console.log(card.classList);
     console.log(card.classList[1]);
+    if (!timerStarted) {
+      timerStarted = true;
+
+      setInterval(function () {
+        seconds++;
+        console.log(seconds);
+      }, 1000);
+    }
   });
 });
 
@@ -95,6 +105,7 @@ card.forEach(function (card, index) {
       if (flippedCards.length === 2) {
         moves++;
         document.getElementById("moves").innerHTML = moves;
+        console.log("Moves", moves);
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
