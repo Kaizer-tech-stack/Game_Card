@@ -92,6 +92,8 @@ card.forEach(function (card, index) {
       card.classList.add("flipped");
       flippedCards.push(card);
       if (flippedCards.length === 2) {
+        moves++;
+        console.log("Moves", moves);
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
@@ -108,7 +110,6 @@ card.forEach(function (card, index) {
             locked = false;
           }, 1000);
         }
-        flippedCards = [];
       }
     }
   });
