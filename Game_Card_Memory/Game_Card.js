@@ -17,6 +17,7 @@ card.forEach(function (card) {
 
       setInterval(function () {
         seconds++;
+        document.getElementById("times").innerHTML = seconds;
         console.log(seconds);
       }, 1000);
     }
