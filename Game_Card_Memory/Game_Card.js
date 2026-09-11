@@ -21,7 +21,7 @@ card.forEach(function (card) {
 });
 
 const cardValues = [
-  "banana",
+  "image/Banana.png",
   "banana",
   "apple",
   "apple",
@@ -46,10 +46,13 @@ let moves = 0;
 let score = 1000;
 card.forEach(function (card, index) {
   card.addEventListener("click", function () {
+    const img = document.createElement("img");
+    img.src = cardValues[index];
+    card.innerHTML = "";
+    card.appendChild(img);
     if (locked) return;
-
     if (!matchedCards.includes(card)) {
-      card.innerHTML = cardValues[index];
+      //card.innerHTML = cardValues[index];
       card.classList.add("flipped");
       flippedCards.push(card);
 
