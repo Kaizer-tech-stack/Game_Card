@@ -95,5 +95,8 @@ reset_button.addEventListener("click", function () {
   document.getElementById("moves").innerHTML = moves;
 
   seconds = 0;
-  document.getElementById("times").innerHTML = seconds;
+  document.getElementById("times").innerHTML = "00:00";
+
+  score = 1000;
+  document.getElementById("score").innerHTML = score;
 });
