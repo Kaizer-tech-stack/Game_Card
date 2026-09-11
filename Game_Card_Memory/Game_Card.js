@@ -99,4 +99,16 @@ reset_button.addEventListener("click", function () {
 
   score = 1000;
   document.getElementById("score").innerHTML = score;
+
+  flippedCards = [];
+  matchedCards = [];
+
+  card.forEach(function (card) {
+    card.innerHTML = "?";
+    card.classList.remove("flipped");
+  });
+
+  cardValues.sort(function () {
+    return Math.random() < 0.5 ? -1 : 1;
+  });
 });
