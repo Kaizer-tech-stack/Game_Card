@@ -86,3 +86,14 @@ card.forEach(function (card, index) {
     }
   });
 });
+
+const reset_button = document.getElementById("reset-btn");
+
+reset_button.addEventListener("click", function () {
+  clearInterval(timerStarted);
+  moves = 0;
+  document.getElementById("moves").innerHTML = moves;
+
+  seconds = 0;
+  document.getElementById("times").innerHTML = seconds;
+});

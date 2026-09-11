@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: deepskyblue;
+  background-color: rgb(154, 39, 123);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -42,7 +42,8 @@ body {
   cursor: pointer;
 }
 
-.reset-button {
+#reset-btn {
   margin-top: 20px;
   padding: 10px 20px;
+  cursor: pointer;
 }
