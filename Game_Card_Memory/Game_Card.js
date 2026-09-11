@@ -100,18 +100,24 @@ let score = 1000;
 card.forEach(function (card, index) {
   card.addEventListener("click", function () {
     if (locked) return;
+
     if (!matchedCards.includes(card)) {
       card.innerHTML = cardValues[index];
       card.classList.add("flipped");
       flippedCards.push(card);
+
       if (flippedCards.length === 2) {
         moves++;
         document.getElementById("moves").innerHTML = moves;
         console.log("Moves", moves);
+
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
           flippedCards = [];
+
+          if (matchedCards.length === 16) {
+          }
         } else {
           console.log("No Match!");
           const cardToHide = flippedCards;
