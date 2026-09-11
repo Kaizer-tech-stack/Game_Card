@@ -117,6 +117,9 @@ card.forEach(function (card, index) {
           flippedCards = [];
 
           if (matchedCards.length === 16) {
+            clearInterval(timerStarted);
+            document.getElementById("win").innerHTML =
+              "You Win!" + " Final Moves: " + moves + " Final Score: " + score;
           }
         } else {
           console.log("No Match!");
