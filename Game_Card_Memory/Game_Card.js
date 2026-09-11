@@ -30,7 +30,7 @@ const cardValues = [
   "image/Mango.png",
   "image/Mango.png",
   "image/Grapes.png",
-  "image/Grape.png",
+  "image/Grapes.png",
   "image/Strawberry.png",
   "image/Strawberry.png",
   "image/Avocado.png",
@@ -48,8 +48,8 @@ card.forEach(function (card, index) {
   card.addEventListener("click", function () {
     const img = document.createElement("img");
     img.src = cardValues[index];
-    card.innerHTML = "";
-    card.appendChild(img);
+    card.querySelector("span").innerHTML = "";
+    card.querySelector("span").appendChild(img);
     if (locked) return;
     if (!matchedCards.includes(card)) {
       //card.innerHTML = cardValues[index];
