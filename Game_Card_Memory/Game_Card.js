@@ -7,8 +7,6 @@ let timerStarted = false;
 let timer;
 cards.forEach(function (card) {
   card.addEventListener("click", function () {
-    //card.style.backgroundColor = "red";
-
     if (!timerStarted) {
       timerStarted = true;
 
@@ -43,7 +41,6 @@ const cardValues = [
 ];
 
 // ==================== GAME STATE ====================
-// Keeps track of matched cards, flipped cards, moves, and score
 let matchedCards = [];
 let flippedCards = [];
 let locked = false;
@@ -54,7 +51,7 @@ cards.forEach(function (card, index) {
     // Stop the player from clicking while two cards are being checked
     if (locked) return;
 
-    // Stop the player from selecting a card that has already been matched
+    // stop player for selecting a card that has already been matched
     if (!matchedCards.includes(card)) {
       // Reveal the selected card's image
       const img = document.createElement("img");
@@ -66,16 +63,14 @@ cards.forEach(function (card, index) {
 
       // Two cards are selected, so check if they are a matching pair
       if (flippedCards.length === 2) {
-        // Lock the board while checking the two selected cards
         locked = true;
-        // Count one move after the player selects two cards
         moves++;
         document.getElementById("moves").innerHTML = moves;
         console.log("Moves", moves);
 
-        // Check if the two selected cards have the same image
+        // comparing the two selected cards
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
-          // Store the matched cards so they cannot be selected again
+          // this is for that matched cards if pick they cannot select the card again
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
           flippedCards = [];
@@ -95,7 +90,7 @@ cards.forEach(function (card, index) {
               card.innerHTML = "<span>?</span>";
               card.classList.remove("flipped");
             });
-            // Penalize the player for an incorrect pair
+
             score -= 100;
             document.getElementById("score").innerHTML = score;
             flippedCards = [];
@@ -108,7 +103,7 @@ cards.forEach(function (card, index) {
 });
 
 // ==================== RESTART GAME ====================
-// Resets all game data and returns the cards to their starting state
+
 const reset_button = document.getElementById("reset-btn");
 
 reset_button.addEventListener("click", function () {
