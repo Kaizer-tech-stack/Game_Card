@@ -5,6 +5,8 @@ const cards = document.querySelectorAll(".card");
 let seconds = 0;
 let timerStarted = false;
 let timer;
+let mm = "00";
+let ss = "00";
 cards.forEach(function (card) {
   card.addEventListener("click", function () {
     if (!timerStarted) {
@@ -81,10 +83,12 @@ cards.forEach(function (card, index) {
           locked = false;
 
           if (matchedCards.length === 16) {
+            document.getElementById("final-moves").innerHTML = moves;
+            document.getElementById("final-score").innerHTML = score;
+            document.getElementById("final-time").innerHTML = `${mm}:${ss}`;
+            document.getElementById("win").style.display = "flex";
+
             clearInterval(timer);
-            document.getElementById("win").innerHTML = `<h2>You Win!</h2>
-              <p>Moves: ${moves}</p>
-              <p>Score: ${score}</p>`;
           }
         } else {
           console.log("No Match!");

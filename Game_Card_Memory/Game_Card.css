@@ -63,7 +63,7 @@ body {
   cursor: pointer;
 }
 
-.Win {
+#win {
   display: none;
   align-items: center;
   justify-content: center;
