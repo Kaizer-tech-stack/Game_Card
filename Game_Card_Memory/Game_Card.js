@@ -1,16 +1,14 @@
-const card = document.querySelectorAll(".card");
-console.log(card);
+const cards = document.querySelectorAll(".card");
 
 // ==================== TIMER LOGIC ====================
 // Starts the timer when the player clicks the first card
 let seconds = 0;
 let timerStarted = false;
 let timer;
-card.forEach(function (card) {
+cards.forEach(function (card) {
   card.addEventListener("click", function () {
     //card.style.backgroundColor = "red";
-    console.log(card.classList);
-    console.log(card.classList[1]);
+
     if (!timerStarted) {
       timerStarted = true;
 
@@ -44,17 +42,21 @@ const cardValues = [
   "image/Watermelon.png",
 ];
 
+// ==================== GAME STATE ====================
+// Keeps track of matched cards, flipped cards, moves, and score
 let matchedCards = [];
 let flippedCards = [];
 let locked = false;
 let moves = 0;
 let score = 1000;
-card.forEach(function (card, index) {
+cards.forEach(function (card, index) {
   card.addEventListener("click", function () {
+    // Stop the player from clicking while two cards are being checked
     if (locked) return;
 
+    // Stop the player from selecting a card that has already been matched
     if (!matchedCards.includes(card)) {
-      //card.innerHTML = cardValues[index];
+      // Reveal the selected card's image
       const img = document.createElement("img");
       img.src = cardValues[index];
       card.querySelector("span").innerHTML = "";
@@ -62,13 +64,18 @@ card.forEach(function (card, index) {
       card.classList.add("flipped");
       flippedCards.push(card);
 
+      // Two cards are selected, so check if they are a matching pair
       if (flippedCards.length === 2) {
+        // Lock the board while checking the two selected cards
         locked = true;
+        // Count one move after the player selects two cards
         moves++;
         document.getElementById("moves").innerHTML = moves;
         console.log("Moves", moves);
 
+        // Check if the two selected cards have the same image
         if (flippedCards[0].innerHTML === flippedCards[1].innerHTML) {
+          // Store the matched cards so they cannot be selected again
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
           flippedCards = [];
@@ -82,11 +89,13 @@ card.forEach(function (card, index) {
         } else {
           console.log("No Match!");
           const cardToHide = flippedCards;
+          // Wait 1 second before hiding the incorrect pair
           setTimeout(function () {
             cardToHide.forEach(function (card) {
               card.innerHTML = "<span>?</span>";
               card.classList.remove("flipped");
             });
+            // Penalize the player for an incorrect pair
             score -= 100;
             document.getElementById("score").innerHTML = score;
             flippedCards = [];
@@ -98,6 +107,8 @@ card.forEach(function (card, index) {
   });
 });
 
+// ==================== RESTART GAME ====================
+// Resets all game data and returns the cards to their starting state
 const reset_button = document.getElementById("reset-btn");
 
 reset_button.addEventListener("click", function () {
@@ -110,18 +121,21 @@ reset_button.addEventListener("click", function () {
   score = 1000;
   document.getElementById("score").innerHTML = score;
 
+  // Stop the current timer
   clearInterval(timer);
   timerStarted = false;
 
+  // Reset the current game state
   flippedCards = [];
   matchedCards = [];
   locked = false;
 
-  card.forEach(function (card) {
+  cards.forEach(function (card) {
     card.innerHTML = "<span>?</span>";
     card.classList.remove("flipped");
   });
 
+  // Shuffle the card values for a new game
   cardValues.sort(function () {
     return Math.random() < 0.5 ? -1 : 1;
   });
