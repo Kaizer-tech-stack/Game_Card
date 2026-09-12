@@ -16,8 +16,8 @@ cards.forEach(function (card) {
         seconds++;
         let minutes = Math.floor(seconds / 60);
         let remainingSeconds = seconds % 60;
-        let mm = String(minutes).padStart(2, "0");
-        let ss = String(remainingSeconds).padStart(2, "0");
+        mm = String(minutes).padStart(2, "0");
+        ss = String(remainingSeconds).padStart(2, "0");
         document.getElementById("times").innerHTML = `${mm}:${ss}`;
         console.log(seconds);
       }, 1000);
@@ -58,7 +58,7 @@ cards.forEach(function (card, index) {
     if (locked) return;
 
     // stop player for selecting a card that has already been matched
-    if (!matchedCards.includes(card)) {
+    if (!matchedCards.includes(card) && !flippedCards.includes(card)) {
       // Reveal the selected card's image
       const img = document.createElement("img");
       img.src = cardValues[index];
@@ -101,9 +101,16 @@ cards.forEach(function (card, index) {
             });
 
             score -= 100;
+            score = Math.max(0, score);
             document.getElementById("score").innerHTML = score;
+            if (score <= 0) {
+              clearInterval(timer);
+              locked = true;
+              alert("You Lose!");
+            } else {
+              locked = false;
+            }
             flippedCards = [];
-            locked = false;
           }, 1000);
         }
       }
@@ -125,7 +132,43 @@ reset_button.addEventListener("click", function () {
   score = 1000;
   document.getElementById("score").innerHTML = score;
 
-  document.getElementById("win").innerHTML = "";
+  document.getElementById("win").style.display = "none";
+  //document.getElementById("win").style.display = "flex";
+
+  // Stop the current timer
+  clearInterval(timer);
+  timerStarted = false;
+
+  // Reset the current game state
+  flippedCards = [];
+  matchedCards = [];
+  locked = false;
+
+  cards.forEach(function (card) {
+    card.innerHTML = "<span>?</span>";
+    card.classList.remove("flipped");
+  });
+
+  // Shuffle the card values for a new game
+  cardValues.sort(function () {
+    return Math.random() < 0.5 ? -1 : 1;
+  });
+});
+
+const play_again_btn = document.getElementById("play-again");
+
+play_again_btn.addEventListener("click", function () {
+  moves = 0;
+  document.getElementById("moves").innerHTML = moves;
+
+  seconds = 0;
+  document.getElementById("times").innerHTML = "00:00";
+
+  score = 1000;
+  document.getElementById("score").innerHTML = score;
+
+  document.getElementById("win").style.display = "none";
+  //document.getElementById("win").style.display = "flex";
 
   // Stop the current timer
   clearInterval(timer);
