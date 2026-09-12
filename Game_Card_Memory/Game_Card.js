@@ -1,8 +1,11 @@
 const card = document.querySelectorAll(".card");
 console.log(card);
 
+// ==================== TIMER LOGIC ====================
+// Starts the timer when the player clicks the first card
 let seconds = 0;
 let timerStarted = false;
+let timer;
 card.forEach(function (card) {
   card.addEventListener("click", function () {
     //card.style.backgroundColor = "red";
@@ -11,7 +14,7 @@ card.forEach(function (card) {
     if (!timerStarted) {
       timerStarted = true;
 
-      setInterval(function () {
+      timer = setInterval(function () {
         seconds++;
         document.getElementById("times").innerHTML = seconds;
         console.log(seconds);
@@ -20,6 +23,8 @@ card.forEach(function (card) {
   });
 });
 
+// ==================== CARD VALUES ====================
+// Stores the image for each card and its matching pair
 const cardValues = [
   "image/Banana.png",
   "image/Banana.png",
@@ -46,17 +51,19 @@ let moves = 0;
 let score = 1000;
 card.forEach(function (card, index) {
   card.addEventListener("click", function () {
-    const img = document.createElement("img");
-    img.src = cardValues[index];
-    card.querySelector("span").innerHTML = "";
-    card.querySelector("span").appendChild(img);
     if (locked) return;
+
     if (!matchedCards.includes(card)) {
       //card.innerHTML = cardValues[index];
+      const img = document.createElement("img");
+      img.src = cardValues[index];
+      card.querySelector("span").innerHTML = "";
+      card.querySelector("span").appendChild(img);
       card.classList.add("flipped");
       flippedCards.push(card);
 
       if (flippedCards.length === 2) {
+        locked = true;
         moves++;
         document.getElementById("moves").innerHTML = moves;
         console.log("Moves", moves);
@@ -65,9 +72,10 @@ card.forEach(function (card, index) {
           matchedCards.push(flippedCards[0], flippedCards[1]);
           console.log("Match Found!");
           flippedCards = [];
+          locked = false;
 
           if (matchedCards.length === 16) {
-            clearInterval(timerStarted);
+            clearInterval(timer);
             document.getElementById("win").innerHTML =
               "You Win!" + " Final Moves: " + moves + " Final Score: " + score;
           }
@@ -76,7 +84,7 @@ card.forEach(function (card, index) {
           const cardToHide = flippedCards;
           setTimeout(function () {
             cardToHide.forEach(function (card) {
-              card.innerHTML = "";
+              card.innerHTML = "<span>?</span>";
               card.classList.remove("flipped");
             });
             score -= 100;
@@ -93,7 +101,6 @@ card.forEach(function (card, index) {
 const reset_button = document.getElementById("reset-btn");
 
 reset_button.addEventListener("click", function () {
-  clearInterval(timerStarted);
   moves = 0;
   document.getElementById("moves").innerHTML = moves;
 
@@ -103,11 +110,15 @@ reset_button.addEventListener("click", function () {
   score = 1000;
   document.getElementById("score").innerHTML = score;
 
+  clearInterval(timer);
+  timerStarted = false;
+
   flippedCards = [];
   matchedCards = [];
+  locked = false;
 
   card.forEach(function (card) {
-    card.innerHTML = "?";
+    card.innerHTML = "<span>?</span>";
     card.classList.remove("flipped");
   });
 
