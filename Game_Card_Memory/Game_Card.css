@@ -62,3 +62,13 @@ body {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.Win {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  border-radius: 20px;
+  background-color: deepskyblue;
+  margin-top: 20px;
+}

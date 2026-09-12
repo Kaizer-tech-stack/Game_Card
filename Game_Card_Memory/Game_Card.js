@@ -82,8 +82,9 @@ cards.forEach(function (card, index) {
 
           if (matchedCards.length === 16) {
             clearInterval(timer);
-            document.getElementById("win").innerHTML =
-              "You Win!" + " Final Moves: " + moves + " Final Score: " + score;
+            document.getElementById("win").innerHTML = `<h2>You Win!</h2>
+              <p>Moves: ${moves}</p>
+              <p>Score: ${score}</p>`;
           }
         } else {
           console.log("No Match!");
@@ -119,6 +120,8 @@ reset_button.addEventListener("click", function () {
 
   score = 1000;
   document.getElementById("score").innerHTML = score;
+
+  document.getElementById("win").innerHTML = "";
 
   // Stop the current timer
   clearInterval(timer);
