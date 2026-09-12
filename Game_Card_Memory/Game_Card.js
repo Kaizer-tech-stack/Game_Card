@@ -12,7 +12,11 @@ cards.forEach(function (card) {
 
       timer = setInterval(function () {
         seconds++;
-        document.getElementById("times").innerHTML = seconds;
+        let minutes = Math.floor(seconds / 60);
+        let remainingSeconds = seconds % 60;
+        let mm = String(minutes).padStart(2, "0");
+        let ss = String(remainingSeconds).padStart(2, "0");
+        document.getElementById("times").innerHTML = `${mm}:${ss}`;
         console.log(seconds);
       }, 1000);
     }
