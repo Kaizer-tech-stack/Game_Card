@@ -121,54 +121,19 @@ cards.forEach(function (card, index) {
 // ==================== RESTART GAME ====================
 
 const reset_button = document.getElementById("reset-btn");
-
-reset_button.addEventListener("click", function () {
-  moves = 0;
-  document.getElementById("moves").innerHTML = moves;
-
-  seconds = 0;
-  document.getElementById("times").innerHTML = "00:00";
-
-  score = 1000;
-  document.getElementById("score").innerHTML = score;
-
-  document.getElementById("win").style.display = "none";
-  //document.getElementById("win").style.display = "flex";
-
-  // Stop the current timer
-  clearInterval(timer);
-  timerStarted = false;
-
-  // Reset the current game state
-  flippedCards = [];
-  matchedCards = [];
-  locked = false;
-
-  cards.forEach(function (card) {
-    card.innerHTML = "<span>?</span>";
-    card.classList.remove("flipped");
-  });
-
-  // Shuffle the card values for a new game
-  cardValues.sort(function () {
-    return Math.random() < 0.5 ? -1 : 1;
-  });
-});
-
 const play_again_btn = document.getElementById("play-again");
 
-play_again_btn.addEventListener("click", function () {
+function resetGame() {
   moves = 0;
   document.getElementById("moves").innerHTML = moves;
 
   seconds = 0;
-  document.getElementById("times").innerHTML = "00:00";
+  document.getElementById("time").innerHTML = "00:00";
 
   score = 1000;
   document.getElementById("score").innerHTML = score;
 
   document.getElementById("win").style.display = "none";
-  //document.getElementById("win").style.display = "flex";
 
   // Stop the current timer
   clearInterval(timer);
@@ -179,13 +144,15 @@ play_again_btn.addEventListener("click", function () {
   matchedCards = [];
   locked = false;
 
-  cards.forEach(function (card) {
-    card.innerHTML = "<span>?</span>";
-    card.classList.remove("flipped");
+  cards.forEach(function () {
+    cards.innerHTML = "<span>?</span>";
+    cards.classList.remove("flipped");
   });
 
   // Shuffle the card values for a new game
   cardValues.sort(function () {
     return Math.random() < 0.5 ? -1 : 1;
   });
-});
+}
+reset_button.addEventListener("click", resetGame);
+play_again_btn.addEventListener("click", resetGame);
