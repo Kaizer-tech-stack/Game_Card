@@ -123,12 +123,12 @@ cards.forEach(function (card, index) {
 const reset_button = document.getElementById("reset-btn");
 const play_again_btn = document.getElementById("play-again");
 
-function resetGame() {
+function reset_game() {
   moves = 0;
   document.getElementById("moves").innerHTML = moves;
 
   seconds = 0;
-  document.getElementById("time").innerHTML = "00:00";
+  document.getElementById("times").innerHTML = "00:00";
 
   score = 1000;
   document.getElementById("score").innerHTML = score;
@@ -144,9 +144,9 @@ function resetGame() {
   matchedCards = [];
   locked = false;
 
-  cards.forEach(function () {
-    cards.innerHTML = "<span>?</span>";
-    cards.classList.remove("flipped");
+  cards.forEach(function (card) {
+    card.innerHTML = "<span>?</span>";
+    card.classList.remove("flipped");
   });
 
   // Shuffle the card values for a new game
@@ -154,5 +154,6 @@ function resetGame() {
     return Math.random() < 0.5 ? -1 : 1;
   });
 }
-reset_button.addEventListener("click", resetGame);
-play_again_btn.addEventListener("click", resetGame);
+
+reset_button.addEventListener("click", reset_game);
+play_again_btn.addEventListener("click", reset_game);
